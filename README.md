@@ -1,50 +1,50 @@
-# AI Agent Workspace Template
+# AI エージェント開発環境テンプレート
 
-This repository is a starter template for setting up an AI-assisted development workspace.
+このリポジトリは、AI エージェントを活用した開発環境を素早く立ち上げるためのテンプレートです。
 
-It is centered on Codex, with notes for other clients where the concepts overlap.
+主対象は Codex ですが、他のクライアントでも読み替えやすいように構成しています。
 
-## What This Template Covers
+## このテンプレートで扱うもの
 
 - `MCP`
-  - Connect external tools, docs, and services to your agent.
+  - 外部ツール、ドキュメント、各種サービスをエージェントに接続します。
 - `Plugins`
-  - Codex-specific workflow bundles that can include skills, app integrations, and MCP servers.
+  - Codex 固有のワークフローバンドルです。Skills、アプリ連携、MCP サーバーを含められます。
 - `Skills`
-  - Reusable task instructions you can keep in the repo and share with your team.
+  - リポジトリ内で管理し、チームで再利用できる作業手順です。
 - `Subagents`
-  - Reusable role definitions for delegated work. See [subagents/README.md](C:\Develop\ai-agent-template\subagents\README.md).
+  - 委譲先の役割定義です。詳細は [subagents/README.md](C:\Develop\ai-agent-template\subagents\README.md) を参照してください。
 
-## Quick Start
+## クイックスタート
 
-1. Copy [.codex/config.toml.example](C:\Develop\ai-agent-template\.codex\config.toml.example) to `.codex/config.toml`.
-2. Enable the MCP servers you need and fill in any required environment variables from [.env.example](C:\Develop\ai-agent-template\.env.example).
-3. Add local skills from [skills/README.md](C:\Develop\ai-agent-template\skills\README.md) and install Codex plugins from the plugin directory when needed.
+1. [.codex/config.toml.example](C:\Develop\ai-agent-template\.codex\config.toml.example) を `.codex/config.toml` にコピーします。
+2. 必要な MCP サーバーを有効化し、必要に応じて [.env.example](C:\Develop\ai-agent-template\.env.example) を元に環境変数を設定します。
+3. [skills/README.md](C:\Develop\ai-agent-template\skills\README.md) を参考にローカル Skill を追加し、必要であれば Codex の plugin directory から Plugins を導入します。
 
-## Repository Layout
+## リポジトリ構成
 
 - [docs/agent-tooling-overview.md](C:\Develop\ai-agent-template\docs\agent-tooling-overview.md)
-  - Concept map across Codex, Claude Code, and Cursor.
+  - Codex / Claude Code / Cursor の概念対応を整理したガイド
 - [docs/codex-setup.md](C:\Develop\ai-agent-template\docs\codex-setup.md)
-  - Codex CLI / App / IDE setup guide for Windows and macOS/Linux.
+  - Codex CLI / App / IDE 向けの導入手順
 - [docs/catalog.md](C:\Develop\ai-agent-template\docs\catalog.md)
-  - Recommended starter catalog for MCP, Plugins, and Skills.
+  - MCP / Plugins / Skills の推奨スターターカタログ
 - [skills/README.md](C:\Develop\ai-agent-template\skills\README.md)
-  - How to add and maintain local repo skills.
+  - ローカル Skill の追加・管理方法
 - [subagents/README.md](C:\Develop\ai-agent-template\subagents\README.md)
-  - Existing role-based delegation examples.
+  - 既存の役割ベース委譲定義
 
-## Recommended Workflow
+## 推奨する導入順
 
-Use this template in the following order:
+以下の順で導入すると扱いやすくなります。
 
-1. Start with MCP for shared tools and documentation access.
-2. Add repo-local Skills for repeatable tasks that should live with the codebase.
-3. Add Codex Plugins for bundled workflows and external app integrations.
-4. Use Subagents when you want role-based delegation on larger tasks.
+1. まず MCP を追加して、共通のツールやドキュメント参照を使えるようにする
+2. 次に Skills を追加して、リポジトリ固有の定型作業を再利用できるようにする
+3. 必要に応じて Codex Plugins を追加し、外部アプリ連携をまとめて使えるようにする
+4. 大きな作業や並列化したい作業では Subagents を使う
 
-## Notes
+## 補足
 
-- Codex stores MCP configuration in `config.toml`. This template uses project-scoped `.codex/config.toml`.
-- Codex plugins are installed from the Codex plugin directory. The config file is mainly for enable/disable control.
-- Skills in this repository are intentionally small and dependency-free so they can be copied into new projects quickly.
+- Codex の MCP 設定は `config.toml` で管理されます。このテンプレートでは project-scoped な `.codex/config.toml` を前提にしています。
+- Codex Plugins のインストール自体は Codex の plugin directory から行い、設定ファイルは主に有効・無効の管理に使います。
+- このリポジトリの Skills は、依存を増やさずに新しいプロジェクトへ持ち込みやすい最小構成にしています。
