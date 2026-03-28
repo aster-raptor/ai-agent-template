@@ -1,0 +1,50 @@
+# Project-scoped Codex configuration example.
+# Copy this file to `.codex/config.toml` and keep secrets in `.env` or your shell.
+
+# MCP servers
+# Codex supports both STDIO and HTTP-based MCP servers.
+# Enable only the entries your team actually uses.
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+enabled = true
+startup_timeout_sec = 20
+tool_timeout_sec = 60
+
+[mcp_servers.playwright]
+# Replace this with the local command your team uses to start the Playwright MCP server.
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]
+enabled = false
+startup_timeout_sec = 20
+tool_timeout_sec = 120
+
+[mcp_servers.github]
+# Example placeholder.
+# Use the transport, URL, and auth flow required by the GitHub MCP server your team standardizes on.
+url = "https://example.com/mcp/github"
+bearer_token_env_var = "GITHUB_TOKEN"
+enabled = false
+required = false
+
+[mcp_servers.openai_docs]
+# Example placeholder for the official Docs MCP setup your team uses.
+# Replace the URL and auth settings with your approved configuration.
+url = "https://example.com/mcp/openai-docs"
+bearer_token_env_var = "OPENAI_API_KEY"
+enabled = false
+required = false
+
+# Plugins
+# Plugins are installed from the Codex plugin directory in the app or via `/plugins` in the CLI.
+# Use this section mainly to disable a plugin after it has been installed.
+
+[plugins."gmail@openai-curated"]
+enabled = false
+
+[plugins."google-drive@openai-curated"]
+enabled = false
+
+[plugins."slack@openai-curated"]
+enabled = false

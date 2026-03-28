@@ -1,0 +1,5 @@
+﻿.env
+.codex/config.toml
+.codex/auth.json
+.codex/sessions/
+.codex/cache/
