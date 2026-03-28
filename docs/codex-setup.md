@@ -1,4 +1,4 @@
-﻿# Codex Setup Guide
+# Codex Setup Guide
 
 This guide uses project-scoped configuration so each repository can declare its own agent tooling.
 
@@ -64,6 +64,35 @@ command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
 enabled = true
 ```
+
+## Installing Skills
+
+### Repo-local skills
+
+The recommended team workflow is to keep shared skills under `skills/` and version them with Git.
+
+1. Add `skills/<skill-name>/SKILL.md`.
+2. Commit the file.
+3. Pull the repository on each machine.
+
+### Curated or marketplace-installed skills
+
+If you want to install a curated skill directly in Codex:
+
+```text
+$skill-installer <skill-name>
+```
+
+Use local installation for personal workflows. If the skill should be standardized for the team, copy the reviewed skill into this repository and treat it as repo-managed content.
+
+## Installing Subagents
+
+Subagents are just Markdown definitions. There is no separate installer.
+
+1. Add a file under `subagents/<name>.md`.
+2. Commit it to Git.
+3. Pull the repository on each machine.
+4. Reuse the definition when creating delegated agents.
 
 ## Recommended Starter MCP Servers
 

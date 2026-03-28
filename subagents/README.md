@@ -1,13 +1,38 @@
-# Codex Subagents
+# Subagents
 
-このディレクトリには、`agency-agents` を Codex 向けのサブエージェント定義に圧縮した Markdown を置く。
+This directory contains reusable subagent definitions for Codex-style delegated work.
 
-目的:
-- `spawn_agent` に渡しやすい短い役割定義を再利用する
-- 元の長い personality / examples を、Codex の実務フロー向けに整理する
-- 役割ごとの責務と期待成果物を固定する
+## How Subagents Are Managed
 
-収録サブエージェント:
+Subagents do not have a dedicated installer like skills or plugins.
+The normal way to manage them is to keep Markdown definition files in the repository and reuse them across machines via Git.
+
+## Installation Method
+
+### Recommended: manage subagents in the repository
+
+1. Create a file under `subagents/<name>.md`.
+2. Describe the role, scope, strengths, and expected output.
+3. Commit the file to Git.
+4. Clone or pull the repository on each machine.
+5. Reference the definition when creating or instructing a delegated agent.
+
+## When To Use a Subagent
+
+Use a subagent when:
+
+- you want a stable delegated role
+- you want repeatable ownership boundaries
+- you want to standardize the tone or review angle of delegated work
+
+## Suggested Agent Types
+
+- implementation-heavy tasks: `agent_type: "worker"`
+- repo exploration and analysis: `agent_type: "explorer"`
+- mixed or general-purpose tasks: `agent_type: "default"`
+
+## Included Examples
+
 - `backend-architect.md`
 - `devops-automator.md`
 - `autonomous-optimization-architect.md`
@@ -17,18 +42,8 @@
 - `executive-summary-generator.md`
 - `trend-researcher.md`
 
-使い方の目安:
-- 実装やファイル変更を伴うタスク: `agent_type: "worker"`
-- 調査・棚卸し・要約中心のタスク: `agent_type: "explorer"`
-- 横断的で判断比重が高いタスク: `agent_type: "default"`
+## Practical Notes
 
-運用メモ:
-- サブエージェントには担当範囲を明示する
-- コード変更を任せる場合は、対象ファイルやディレクトリを明示する
-- 既存変更を巻き戻さないことを明記する
-- 返答では、変更ファイルや判断理由を短く列挙させる
-
-元ネタ:
-- Repository: https://github.com/msitarzewski/agency-agents
-- License: MIT
-
+- Keep subagents small and role-focused.
+- Prefer Git-managed Markdown files over machine-local copies.
+- If a subagent becomes workflow-oriented instead of role-oriented, move that logic into a skill.

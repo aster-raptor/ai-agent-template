@@ -36,6 +36,25 @@ bearer_token_env_var = "OPENAI_API_KEY"
 enabled = false
 required = false
 
+[mcp_servers.filesystem]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-filesystem"]
+enabled = false
+required = false
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@latest"]
+enabled = false
+required = false
+
+[mcp_servers.notion]
+command = "npx"
+args = ["-y", "mcp-remote", "https://mcp.notion.com/mcp"]
+startup_timeout_sec = 60
+enabled = false
+required = false
+
 # Plugins
 # Plugins are installed from the Codex plugin directory in the app or via `/plugins` in the CLI.
 # Use this section mainly to disable a plugin after it has been installed.
