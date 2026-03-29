@@ -25,6 +25,14 @@
 - `mcp_servers`
 - `skills.config`
 
+## このディレクトリの方針
+
+このテンプレートの agent は、`msitarzewski/agency-agents` の各役割定義を参考にしつつ、Codex の custom agent 形式へ落とし直しています。
+
+- 元リポジトリの長い personality / deliverables を踏襲する
+- ただし Codex で直接読みやすい TOML に整理する
+- 手順ではなく役割定義に集中し、再利用手順は Skill へ分離する
+
 ## 使い方
 
 1. `.codex/agents/<name>.toml` を作成します。
