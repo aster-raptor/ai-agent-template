@@ -13,18 +13,20 @@ This guide uses project-scoped configuration so each repository can declare its 
 This template uses:
 
 - `.codex/config.toml` for project-scoped Codex configuration
+- `.codex/agents/*.toml` for project-scoped custom agents
 - `.env` for local secrets and tokens
 
-Codex can also use `~/.codex/config.toml`, but the project-scoped file is easier to share as a template.
+Codex can also use `~/.codex/config.toml` and `~/.codex/agents/`, but the project-scoped files are easier to share as a template.
 
 ## Setup on Windows
 
 1. Copy `.codex/config.toml.example` to `.codex/config.toml`.
 2. Copy `.env.example` to `.env`.
 3. Edit `.codex/config.toml` and enable the MCP servers you want.
-4. Open a new Codex session in this repository.
-5. Run `/mcp` to confirm the servers are visible.
-6. Run `/plugins` if you want to browse and install Codex plugins.
+4. Review the example agent files under `.codex/agents/`.
+5. Open a new Codex session in this repository.
+6. Run `/mcp` to confirm the servers are visible.
+7. Run `/plugins` if you want to browse and install Codex plugins.
 
 ### Example: add Context7 from the CLI
 
@@ -46,9 +48,10 @@ enabled = true
 1. Copy `.codex/config.toml.example` to `.codex/config.toml`.
 2. Copy `.env.example` to `.env`.
 3. Export any tokens you need or load them from your preferred shell startup flow.
-4. Open a new Codex session in this repository.
-5. Run `/mcp` to confirm the servers are visible.
-6. Run `/plugins` if you want to browse and install Codex plugins.
+4. Review the example agent files under `.codex/agents/`.
+5. Open a new Codex session in this repository.
+6. Run `/mcp` to confirm the servers are visible.
+7. Run `/plugins` if you want to browse and install Codex plugins.
 
 ### Example: add Context7 from the CLI
 
@@ -87,12 +90,12 @@ Use local installation for personal workflows. If the skill should be standardiz
 
 ## Installing Subagents
 
-Subagents are just Markdown definitions. There is no separate installer.
+Current Codex custom agents are defined as TOML files, not Markdown notes.
 
-1. Add a file under `subagents/<name>.md`.
-2. Commit it to Git.
-3. Pull the repository on each machine.
-4. Reuse the definition when creating delegated agents.
+1. Add a file under `.codex/agents/<name>.toml`.
+2. Define `name`, `description`, and `developer_instructions`.
+3. Optionally add fields like `model`, `model_reasoning_effort`, `sandbox_mode`, or agent-specific MCP and skill settings.
+4. Commit the file and share it via Git.
 
 ## Recommended Starter MCP Servers
 
@@ -152,5 +155,6 @@ After setup, confirm the following:
 
 - `/mcp` shows at least one enabled MCP server
 - `.codex/config.toml` parses cleanly
+- `.codex/agents/*.toml` files are present for any custom agents you want to use
 - required tokens are present in your environment
 - `/plugins` opens the plugin directory in Codex

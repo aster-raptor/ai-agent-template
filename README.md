@@ -13,14 +13,14 @@
 - `Skills`
   - リポジトリ内で管理し、チームで再利用できる作業手順です。
 - `Subagents`
-  - 委譲先の役割定義です。詳細は [subagents/README.md](C:\Develop\ai-agent-template\subagents\README.md) を参照してください。
+  - Codex の custom agent 機能で使う `.codex/agents/*.toml` 定義です。詳細は [.codex/agents/README.md](C:\Develop\ai-agent-template\.codex\agents\README.md) を参照してください。
 
 ## クイックスタート
 
 1. [.codex/config.toml.example](C:\Develop\ai-agent-template\.codex\config.toml.example) を `.codex/config.toml` にコピーします。
 2. 必要な MCP サーバーを有効化し、必要に応じて [.env.example](C:\Develop\ai-agent-template\.env.example) を元に環境変数を設定します。
 3. [skills/README.md](C:\Develop\ai-agent-template\skills\README.md) を参考にローカル Skill を追加し、必要であれば Codex の plugin directory から Plugins を導入します。
-4. [subagents/README.md](C:\Develop\ai-agent-template\subagents\README.md) を参考に Subagent 定義をそのまま再利用します。
+4. [.codex/agents/README.md](C:\Develop\ai-agent-template\.codex\agents\README.md) を参考に custom subagent を追加または調整します。
 
 ## Skills の導入方法
 
@@ -40,12 +40,12 @@
 
 ## Subagents の導入方法
 
-Subagent には Skill のような専用インストーラはありません。Markdown ファイルをリポジトリに置いて管理します。
+現在の Codex では、Subagent は Markdown ではなく `.codex/agents/*.toml` として定義します。
 
-1. `subagents/<name>.md` を配置します。
-2. 役割、責務、得意領域、期待する出力を書きます。
-3. `spawn_agent` で使うときに、その定義を参照または読み込んで利用します。
-4. 複数端末で共有したい場合は、このリポジトリ配下で Git 管理します。
+1. `.codex/agents/<name>.toml` を作成します。
+2. `name`, `description`, `developer_instructions` を記述します。
+3. 必要なら `model`, `model_reasoning_effort`, `sandbox_mode` などを追加します。
+4. Git で共有し、各端末で同じ定義を利用します。
 
 ## リポジトリ構成
 
@@ -57,8 +57,10 @@ Subagent には Skill のような専用インストーラはありません。M
   - MCP / Plugins / Skills の推奨スターターカタログ
 - [skills/README.md](C:\Develop\ai-agent-template\skills\README.md)
   - ローカル Skill の追加・管理方法
+- [.codex/agents/README.md](C:\Develop\ai-agent-template\.codex\agents\README.md)
+  - Codex 互換の custom subagent 定義方法
 - [subagents/README.md](C:\Develop\ai-agent-template\subagents\README.md)
-  - 既存の役割ベース委譲定義
+  - 旧 Markdown 形式からの移行案内
 
 ## 推奨する導入順
 
@@ -67,11 +69,11 @@ Subagent には Skill のような専用インストーラはありません。M
 1. まず MCP を追加して、共通のツールやドキュメント参照を使えるようにする
 2. 次に Skills を追加して、リポジトリ固有の定型作業を再利用できるようにする
 3. 必要に応じて Codex Plugins を追加し、外部アプリ連携をまとめて使えるようにする
-4. 大きな作業や並列化したい作業では Subagents を使う
+4. 並列実行や役割分担が必要になったら `.codex/agents/*.toml` の Subagents を追加する
 
 ## 補足
 
 - Codex の MCP 設定は `config.toml` で管理されます。このテンプレートでは project-scoped な `.codex/config.toml` を前提にしています。
 - Codex Plugins のインストール自体は Codex の plugin directory から行い、設定ファイルは主に有効・無効の管理に使います。
 - このリポジトリの Skills は、依存を増やさずに新しいプロジェクトへ持ち込みやすい最小構成にしています。
-- Subagents は配布物というより repo 同梱の役割定義として扱うのが管理しやすいです。
+- Subagents は現行 Codex docs に合わせて `.codex/agents/*.toml` で管理します。

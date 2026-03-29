@@ -1,6 +1,14 @@
 # Project-scoped Codex configuration example.
 # Copy this file to `.codex/config.toml` and keep secrets in `.env` or your shell.
 
+# Global subagent settings.
+# These values are optional and can be tuned per repository.
+
+[agents]
+max_threads = 8
+max_depth = 3
+job_max_runtime_seconds = 1800
+
 # MCP servers
 # Codex supports both STDIO and HTTP-based MCP servers.
 # Enable only the entries your team actually uses.
